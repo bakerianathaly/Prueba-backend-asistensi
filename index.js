@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoute')
 
 //Conexión a mongo DB
-mongoose.connect('mongodb://localhost/pruebaasistensi', {useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex: true, useFindAndModify: false })
+mongoose.connect('mongodb+srv://admin:admin@cluster0.m4rkv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex: true, useFindAndModify: false })
+//DB local: mongodb://localhost/pruebaasistensi
 mongoose.connection.once("open", () =>{
     console.log("Connected to DB")
 }).on("error", err =>{

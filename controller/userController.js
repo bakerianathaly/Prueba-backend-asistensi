@@ -238,6 +238,12 @@ async function deleteUser(req, res, done){
     }
 }
 
+async function get(req, res){
+    let data = req.body
+    var existingUser = await userModel.findOne({ email: data.email}).exec() //Consulta para ver si el usuario existe 
+    
+}
+
 module.exports = {
     signUp,
     loggedIn,
