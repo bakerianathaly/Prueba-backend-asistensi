@@ -5,4 +5,5 @@ module.exports = (app) =>{
     app.post('/login',  userController.loggedIn)
     app.post('/update',userController.updateUser)
     app.post('/delete', userController.deleteUser)
+    app.get('/get',userController.get)
 }   

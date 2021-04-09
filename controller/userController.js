@@ -240,13 +240,41 @@ async function deleteUser(req, res, done){
 
 async function get(req, res){
     let data = req.body
-    var existingUser = await userModel.findOne({ email: data.email}).exec() //Consulta para ver si el usuario existe 
-    
+    var existingUser = await userModel.findOne({ id: data.id}).exec() //Consulta para ver si el usuario existe 
+
+    if(!existingUser){
+        //Validación por si el usuario no existe retorne un mensaje de error
+        return res.status(409).send({
+            status: "409",
+            response:"Conflict",
+            message:"El usuario no existe"
+        }) 
+    }
+    else{
+        let datos= {
+            //JSON de los datos del usuario que seran retornados
+            id:existingUser.id,
+            name: existingUser.name,
+            lastName: existingUser.lastName,
+            email: existingUser.email,
+            cedula: existingUser.cedula,
+            username: existingUser.username
+        }
+       
+        //Retorno de mensaje de exito
+        return res.status(200).send({
+            datos,
+            status: "200",
+            response:"OK",
+            message: "Inicio de sesión exitoso" 
+        })
+    }
 }
 
 module.exports = {
     signUp,
     loggedIn,
     updateUser,
-    deleteUser
+    deleteUser,
+    get
 }
