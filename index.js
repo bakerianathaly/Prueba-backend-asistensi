@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 //Routas de la API
 userRoutes(app)
 
-app.listen(3000, () =>{
+app.listen(process.env.PORT || 3000, () =>{
     console.log("Api corriendo en https://localhost:3000");
 });
 
